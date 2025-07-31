@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerMovementScript : MonoBehaviour
     public float groundDistance = .4f;//radius of Sphere to be used to check ground
     public LayerMask groundMask;
 
+    private Vector2 moveInput;
+
     Vector3 velocity;
     bool isGrounded;
 
@@ -32,6 +35,16 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleMovement();
+    }
+
+    public void OnMovement(InputAction.CallbackContext context)//has this happened on the input action - that is what is being checked.
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void HandleMovement()
+    {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);//creates a sphere from the groundCheck gameObject which checks if the player is on the ground
 
         if (isGrounded && velocity.y < 0)
@@ -39,22 +52,22 @@ public class PlayerMovementScript : MonoBehaviour
             velocity.y = -2f;//as to reset the velocity, which was before constantly building
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
+        Vector3 move = transform.right * moveInput.x + transform.forward *
+        moveInput.y;
 
         controller.Move(move * speed * Time.deltaTime);//"Time.deltaTime" meaning the move speed is now framerate independent
-
-        /*
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-        */
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (isGrounded)
+        {
+            //Debug.Log("Jump" + context.phase);
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
     }
 }

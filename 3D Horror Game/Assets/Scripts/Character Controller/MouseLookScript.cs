@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseLookScript : MonoBehaviour
 {
@@ -14,20 +15,32 @@ public class MouseLookScript : MonoBehaviour
 
     public Transform playerBody;
 
+    private Vector2 lookInput;
+
     float xRotation = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //this is using Unity's old input system
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        HandleMovement();
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookInput = context.ReadValue<Vector2>();
+    }
+
+    public void HandleMovement()
+    {
+        float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
+        float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);//"can never over rotate and look behind the player"
