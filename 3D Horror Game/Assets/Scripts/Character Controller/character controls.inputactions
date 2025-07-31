@@ -31,15 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "interact",
-                    "type": "Button",
-                    "id": "d6538225-b656-4c2c-9718-081cecf7d287",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -172,17 +163,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4df4740e-7398-4da1-86d1-2115b6f462a0",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
