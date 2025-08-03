@@ -230,7 +230,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317149976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -772,10 +772,6 @@ MonoBehaviour:
   range: 15
   FirstPersonCamera: {fileID: 330585545}
   ObjectInformation: {fileID: 1788032960}
-  ObjectInformation2: {fileID: 0}
-  ObjInfo: this object contains information. it shouldnt work like this though. the
-    text for that information should be on the object. not on the player. we'll fix
-    that.
 --- !u!1 &723825034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1137,7 @@ GameObject:
   - component: {fileID: 1418330545}
   m_Layer: 3
   m_Name: ground
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
