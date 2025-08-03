@@ -8,6 +8,7 @@ public class InteractableScript : MonoBehaviour
 
     public TextMeshProUGUI ObjectInformation;
     public TextMeshProUGUI ObjectInformation2;
+    [TextArea(2,2)] public string ObjInfo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +25,14 @@ public class InteractableScript : MonoBehaviour
             && hitInfo.transform.gameObject.CompareTag("Interactable"))
         {
             ObjectInformation.text = hitInfo.transform.name.ToString();
+
+            //USING UNITYS OLD INPUT SYSTEM. GET HELP!!!//
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Time.timeScale = 0f;
+                ObjectInformation2.enabled = true;
+                ObjectInformation2.text = ObjInfo.ToString();
+            }
         }
         else
         {
