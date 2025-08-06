@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ObjectivesScript : MonoBehaviour
 {
+    public Transform player;
+    public Transform ob;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +15,11 @@ public class ObjectivesScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        player.transform.position = ob.transform.position;
     }
 }
